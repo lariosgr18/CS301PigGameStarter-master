@@ -26,43 +26,77 @@ public class PigGameState extends GameState{
 
     }
 
-    public int getPlayerID() {
+
+
+    public PigGameState( GameState gameState){
+        gameState = (PigGameState)gameState;
+        this.playerID = ((PigGameState) gameState).getPlayerID();
+        this.player1Score = ((PigGameState) gameState).getPlayer1Score();
+        this.player2Score = ((PigGameState) gameState).getPlayer2Score();
+        this.currentTotal = ((PigGameState) gameState).getCurrentTotal();
+        this.currentDie = ((PigGameState) gameState).getCurrentDie();
+
+    }
+
+    public int getPlayerID()
+    {
         return playerID;
     }
 
-    public int getPlayer1Score() {
+    public int getPlayer1Score()
+    {
         return player1Score;
     }
 
-    public int getPlayer2Score() {
-        return player2Score;
+    public int getPlayer2Score(){
+    return player2Score;
     }
 
-    public int getCurrentTotal() {
+
+    public int getCurrentTotal()
+    {
         return currentTotal;
     }
 
     public int getCurrentDie() {
+
         return currentDie;
     }
 
-    public PigGameState ( int plyID, int ply1Score, int ply2Score, int curTot, int curDie ){
-        playerID= plyID;
-        player1Score= ply1Score;
-        player2Score= ply2Score;
-        currentTotal= curTot;
-        currentDie= curDie;
+
+
+    public void hold(){
+        if( playerID == 1){
+
+            player1Score = player1Score + currentTotal;
+            currentTotal=0;
+            playerID=2;
+        }
+
+        if (playerID == 2){
+            player2Score = player2Score + currentTotal;
+            currentTotal=0;
+            playerID=1;
+
+        }
 
 
     }
 
-    public void hold(int dieValue, int plyID){
-        //if( plyID == playerID)
+    public void roll( ){
+
+        int dieValue = (int) ((Math.random() *6 )+1);
+        if(dieValue != 1) {
+            currentTotal = currentTotal + dieValue;
+        }
+        else
+        {
+            currentDie=dieValue;
+            currentTotal=0;
+            hold();
+        }
 
 
-    }
-
-    public void roll(int curTotal, int dieValue){
 
     }
 
