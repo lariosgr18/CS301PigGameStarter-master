@@ -46,13 +46,23 @@ public class PigGameState extends GameState{
         return currentDie;
     }
 
-    public PigGameState ( int plyID1, int ply1Score, int ply2Score, int curTot, int curDie ){
-        playerID= plyID1;
+    public PigGameState ( int plyID, int ply1Score, int ply2Score, int curTot, int curDie ){
+        playerID= plyID;
         player1Score= ply1Score;
         player2Score= ply2Score;
         currentTotal= curTot;
         currentDie= curDie;
 
+
+    }
+
+    public void hold(int dieValue, int plyID){
+        //if( plyID == playerID)
+
+
+    }
+
+    public void roll(int curTotal, int dieValue){
 
     }
 
